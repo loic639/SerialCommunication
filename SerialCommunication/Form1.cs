@@ -96,7 +96,7 @@ namespace SerialCommunication
                     string commando = "ping";
                     serialPortArduino.WriteLine (commando);
                     string antwoord = serialPortArduino.ReadLine ();
-                    antwoord.TrimEnd();
+                    antwoord = antwoord.TrimEnd();
                     if (antwoord == "pong")
                     {
                         radioButtonVerbonden.Checked = true;
