@@ -56,5 +56,10 @@ namespace SerialCommunication
         {
             // abc def ghi jkl
         }
+
+        private void radioButtonParityEven_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
