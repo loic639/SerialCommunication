@@ -115,6 +115,9 @@ namespace SerialCommunication
             catch (Exception exception)
             {
                 labelStatus.Text = "Error: " + exception.Message;
+                serialPortArduino.Close();
+                radioButtonVerbonden.Checked = false;
+                buttonConnect.Text = "connect";
             }
 
         }   
@@ -122,6 +125,27 @@ namespace SerialCommunication
         private void radioButtonParityEven_CheckedChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void checkBoxDigital2_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (serialPortArduino.IsOpen)
+                {
+                    string commando;
+                    if (checkBoxDigital2.Checked) commando = "set d2 high";
+                    else commando = "set d2 low";
+                    serialPortArduino.WriteLine(commando);
+                }
+            }
+            catch (Exception exception)
+            {
+                labelStatus.Text = "Error: " + exception.Message;
+                serialPortArduino.Close();
+                radioButtonVerbonden.Checked = false;
+                buttonConnect.Text = "connect";
+            }
         }
     }
 }
