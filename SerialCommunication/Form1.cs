@@ -70,9 +70,9 @@ namespace SerialCommunication
                 else
                 {
                     serialPortArduino.PortName = (string)comboBoxPoort.SelectedItem;
-                    serialPortArduino.BaudRate = Int32.Parse((string) comboBoxBaudrate.SelectedItem);
-                    serialPortArduino.DataBits = (int) numericUpDownDatabits.Value;
-                    
+                    serialPortArduino.BaudRate = Int32.Parse((string)comboBoxBaudrate.SelectedItem);
+                    serialPortArduino.DataBits = (int)numericUpDownDatabits.Value;
+
                     if (radioButtonParityEven.Checked) serialPortArduino.Parity = Parity.Even;
                     else if (radioButtonParityOdd.Checked) serialPortArduino.Parity = Parity.Odd;
                     else if (radioButtonParityNone.Checked) serialPortArduino.Parity = Parity.None;
@@ -94,8 +94,8 @@ namespace SerialCommunication
 
                     serialPortArduino.Open();
                     string commando = "ping";
-                    serialPortArduino.WriteLine (commando);
-                    string antwoord = serialPortArduino.ReadLine ();
+                    serialPortArduino.WriteLine(commando);
+                    string antwoord = serialPortArduino.ReadLine();
                     antwoord = antwoord.TrimEnd();
                     if (antwoord == "pong")
                     {
@@ -105,12 +105,12 @@ namespace SerialCommunication
                     }
                     else
                     {
-                        serialPortArduino.Close ();
+                        serialPortArduino.Close();
                         labelStatus.Text = "Error: verkeerd antwoord";
                     }
 
-                 }
-            
+                }
+
             }
             catch (Exception exception)
             {
@@ -120,7 +120,7 @@ namespace SerialCommunication
                 buttonConnect.Text = "connect";
             }
 
-        }   
+        }
 
         private void radioButtonParityEven_CheckedChanged(object sender, EventArgs e)
         {
@@ -136,6 +136,49 @@ namespace SerialCommunication
                     string commando;
                     if (checkBoxDigital2.Checked) commando = "set d2 high";
                     else commando = "set d2 low";
+                    serialPortArduino.WriteLine(commando);
+                }
+            }
+            catch (Exception exception)
+            {
+                labelStatus.Text = "Error: " + exception.Message;
+                serialPortArduino.Close();
+                radioButtonVerbonden.Checked = false;
+                buttonConnect.Text = "connect";
+            }
+        }
+
+        private void checkBoxDigital3_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (serialPortArduino.IsOpen)
+                {
+                    string commando;
+                    if (checkBoxDigital3.Checked) commando = "set d3 high";
+                    else commando = "set d3 low";
+                    serialPortArduino.WriteLine(commando);
+                }
+            }
+            catch (Exception exception)
+            {
+                labelStatus.Text = "Error: " + exception.Message;
+                serialPortArduino.Close();
+                radioButtonVerbonden.Checked = false;
+                buttonConnect.Text = "connect";
+            }
+
+        }
+
+        private void checkBoxDigital4_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (serialPortArduino.IsOpen)
+                {
+                    string commando;
+                    if (checkBoxDigital4.Checked) commando = "set d4 high";
+                    else commando = "set d4 low";
                     serialPortArduino.WriteLine(commando);
                 }
             }
