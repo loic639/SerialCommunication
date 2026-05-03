@@ -190,5 +190,62 @@ namespace SerialCommunication
                 buttonConnect.Text = "connect";
             }
         }
+
+        private void trackBarPWM9_Scroll(object sender, EventArgs e)
+        {
+            try
+            {
+                if (serialPortArduino.IsOpen) ;
+                {
+                    string commando = string.Format("set pwm9 {0} ", trackBarPWM9.Value);
+                    serialPortArduino.WriteLine(commando);
+                }
+            }
+            catch (Exception exception)
+            {
+                labelStatus.Text = "Error: " + exception.Message;
+                serialPortArduino.Close();
+                radioButtonVerbonden.Checked = false;
+                buttonConnect.Text = "connect";
+            }
+        }
+
+        private void trackBarPWM10_Scroll(object sender, EventArgs e)
+        {
+            try
+            {
+                if (serialPortArduino.IsOpen) ;
+                {
+                    string commando = string.Format("set pwm10 {0} ", trackBarPWM10.Value);
+                    serialPortArduino.WriteLine(commando);
+                }
+            }
+            catch (Exception exception)
+            {
+                labelStatus.Text = "Error: " + exception.Message;
+                serialPortArduino.Close();
+                radioButtonVerbonden.Checked = false;
+                buttonConnect.Text = "connect";
+            }
+        }
+
+        private void trackBarPWM11_Scroll(object sender, EventArgs e)
+        {
+            try
+            {
+                if (serialPortArduino.IsOpen) ;
+                {
+                    string commando = string.Format("set pwm11 {0} ", trackBarPWM11.Value);
+                    serialPortArduino.WriteLine(commando);
+                }
+            }
+            catch (Exception exception)
+            {
+                labelStatus.Text = "Error: " + exception.Message;
+                serialPortArduino.Close();
+                radioButtonVerbonden.Checked = false;
+                buttonConnect.Text = "connect";
+            }
+        }
     }
 }
